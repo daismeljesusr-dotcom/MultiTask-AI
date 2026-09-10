@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daismel Rodriguez | Agencia de IA &amp; Soluciones Digitales</title>
+    <style>
+        :root {
+            --primary-color: #0f172a;
+            --accent-color: #2563eb;
+            --accent-hover: #1d4ed8;
+            --text-dark: #334155;
+            --text-light: #64748b;
+            --bg-light: #f8fafc;
+            --white: #ffffff;
+            --border-color: #e2e8f0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header .logo {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: var(--white);
+        }
+
+        header nav a {
+            color: var(--white);
+            text-decoration: none;
+            margin-left: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--white);
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.2s ease;
+        }
+
+        .btn:hover {
+            background-color: var(--accent-hover);
+        }
+
+        .hero {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #94a3b8;
+            max-width: 650px;
+            margin: 0 auto 2rem auto;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 4rem 1.5rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 3rem;
+            color: var(--primary-color);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background-color: var(--white);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .service-card h3 {
+            font-size: 1.35rem;
+            margin-top: 0;
+            color: var(--primary-color);
+        }
+
+        .service-card ul {
+            padding-left: 1.2rem;
+            color: var(--text-light);
+        }
+
+        .price-tag {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: var(--accent-color);
+            margin-top: 1rem;
+        }
+
+        .about-section {
+            background-color: var(--white);
+            border-radius: 8px;
+            padding: 3rem;
+            border: 1px solid var(--border-color);
+            margin-top: 2rem;
+        }
+
+        .contact-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+
+        .contact-info p {
+            font-size: 1.1rem;
+            margin-bottom: 0.8rem;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 1rem;
+            box-sizing: border-box;
+        }
+
+        footer {
+            background-color: var(--primary-color);
+            color: #94a3b8;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .contact-section {
+                grid-template-columns: 1fr;
+            }
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">Daismel Rodriguez | AI Agency</div>
+        <nav>
+            <a href="#servicios">Servicios</a>
+            <a href="#sobre-mi">Sobre Mí</a>
+            <a href="#contacto">Contacto</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Poniendo la Inteligencia Artificial a vender e integrar tu negocio 24/7</h1>
+        <p>Diseñamos sitios webs inteligentes, agentes de WhatsApp automatizados y estrategias audiovisuales para que tu empresa reduzca costos y nunca pierda un cliente.</p>
+        <div>
+            <a href="https://wa.me/18495710085" class="btn" target="_blank">Probar Agente en WhatsApp</a>
+        </div>
+    </section>
+
+    <div class="container">
+
+        <section id="servicios">
+            <h2 class="section-title">Mis Servicios</h2>
+            <div class="services-grid">
+
+                <div class="service-card">
+                    <div>
+                        <h3>1. Auditoría IA de Negocio</h3>
+                        <p>Diagnóstico rápido para identificar fugas de dinero y tiempo en tus procesos comerciales.</p>
+                        <ul>
+                            <li>Análisis de atención al cliente y ventas.</li>
+                            <li>Reporte en PDF + Video personalizado (Loom).</li>
+                            <li>Hoja de ruta con 3 automatizaciones sugeridas.</li>
+                        </ul>
+                    </div>
+                    <div class="price-tag">GRATIS</div>
+                </div>
+
+                <div class="service-card">
+                    <div>
+                        <h3>2. Agente de IA para WhatsApp 24/7</h3>
+                        <p>Asistente virtual entrenado para responder consultas, tomar pedidos y agendar citas automáticamente.</p>
+                        <ul>
+                            <li>Respuestas naturales con GPT-4o / Claude.</li>
+                            <li>Integración con Google Sheets y CRM.</li>
+                            <li>Escalación a agente humano en ventas clave.</li>
+                        </ul>
+                    </div>
+                    <div class="price-tag">$300 USD setup + $60/mes</div>
+                </div>
+
+                <div class="service-card">
+                    <div>
+                        <h3>3. Sitio Web Inteligente</h3>
+                        <p>Páginas optimizadas para convertir visitantes en clientes de manera continua.</p>
+                        <ul>
+                            <li>Diseño ultra rápido adaptado a móviles.</li>
+                            <li>Chatbot conectado directamente a WhatsApp.</li>
+                            <li>Formularios automatizados de captura.</li>
+                        </ul>
+                    </div>
+                    <div class="price-tag">$650 USD (Único)</div>
+                </div>
+
+                <div class="service-card">
+                    <div>
+                        <h3>4. Auditoría de Marca Personal</h3>
+                        <p>Optimización de presencia digital para profesionales, consultores y creadores.</p>
+                        <ul>
+                            <li>Análisis de perfil en redes profesionales.</li>
+                            <li>Definición de pilares de contenido optimizados con IA.</li>
+                            <li>Plantillas de guiones para generación de autoridad.</li>
+                        </ul>
+                    </div>
+                    <div class="price-tag">$200 USD (Entregable único)</div>
+                </div>
+
+                <div class="service-card">
+                    <div>
+                        <h3>5. Edición de Vídeos + Flujo IA</h3>
+                        <p>Creación y edición de contenido vertical optimizado con herramientas de IA.</p>
+                        <ul>
+                            <li>Subtitulado dinámico y edición de alto impacto.</li>
+                            <li>Generación de guiones adaptados a tu nicho.</li>
+                            <li>Paquete de 10 a 12 vídeos verticales al mes.</li>
+                        </ul>
+                    </div>
+                    <div class="price-tag">$400 USD / mes</div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="sobre-mi" class="about-section">
+            <h2>Sobre Mí</h2>
+            <p>Hola, soy <strong>Daismel Jesus Rodriguez Botet</strong>. Ayudo a empresarios y profesionales a modernizar sus operaciones mediante la implementación estratégica de Inteligencia Artificial.</p>
+            <p>Mi enfoque no se basa en tecnología compleja, sino en <strong>resultados comerciales directos</strong>: hacerte ahorrar horas de trabajo manual y aumentar la conversión de tus ventas.</p>
+        </section>
+
+        <section id="contacto">
+            <h2 class="section-title" style="margin-top: 3rem;">Contacto Directo</h2>
+            <div class="contact-section">
+                
+                <div class="contact-info">
+                    <h3>¿Listo para automatizar tu negocio?</h3>
+                    <p>Contáctame directamente para agendar tu diagnóstico inicial o consultar cualquiera de nuestras soluciones de IA.</p>
+                    <p><strong>Fundador:</strong> Daismel Jesus Rodriguez Botet</p>
+                    <p><strong>Teléfono / WhatsApp:</strong> <a href="https://wa.me/18495710085" target="_blank">+1 (849) 571-0085</a></p>
+                    <p><strong>Correo Electrónico:</strong> daismeljesusr@gmail.com</p>
+                </div>
+
+                <form>
+                    <input type="text" placeholder="Tu Nombre Completo" required>
+                    <input type="text" placeholder="Nombre de tu Negocio / Empresa" required>
+                    <select required>
+                        <option value="" disabled selected>Selecciona el servicio que necesitas</option>
+                        <option value="auditoria">Auditoría IA de Negocio (Gratis)</option>
+                        <option value="whatsapp">Agente de IA para WhatsApp 24/7</option>
+                        <option value="web">Sitio Web Inteligente</option>
+                        <option value="marca">Auditoría de Marca Personal</option>
+                        <option value="video">Edición de Vídeos + Flujo IA</option>
+                    </select>
+                    <input type="tel" placeholder="Número de WhatsApp" required>
+                    <textarea rows="4" placeholder="Escribe detalles breves sobre tu consulta"></textarea>
+                    <button type="submit" class="btn">Enviar Solicitud</button>
+                </form>
+
+            </div>
+        </section>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Daismel Rodriguez | Soluciones de Inteligencia Artificial. Todos los derechos reservados.</p>
+    </footer>
+<script>
+  const form = document.querySelector('form');
+
+  if (form) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const formData = {
+        nombre: form.querySelector('input[placeholder*="Nombre"]')?.value || '',
+        empresa: form.querySelector('input[placeholder*="Empresa"]')?.value || '',
+        servicio: form.querySelector('select')?.value || '',
+        whatsapp: form.querySelector('input[placeholder*="WhatsApp"]')?.value || '',
+        detalles: form.querySelector('textarea')?.value || ''
+      };
+
+      try {
+        const response = await fetch('/api/contacto', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(formData)
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+          alert('¡Gracias! Tu información ha sido enviada correctamente.');
+          form.reset();
+        } else {
+          alert('Hubo un problema al enviar tu información.');
+        }
+      } catch (error) {
+        console.error('Error al conectar con el servidor:', error);
+        alert('Error de conexión con el servidor.');
+      }
+    });
+  }
+</script>
+</body>
+</html>
