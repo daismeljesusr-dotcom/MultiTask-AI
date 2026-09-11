@@ -4,15 +4,15 @@ const path = require('path');
 
 const app = express();
 
-// Middlewares
+// Middlewares para procesar datos
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Archivos estáticos
+// Servir archivos estáticos
 app.use(express.static(path.join(__dirname)));
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Transporte Nodemailer (Puerto 587 TLS)
+// Configuración del transporte Nodemailer
 const transporter = nodemailer.createTransport({
   host: 'smtp.gmail.com',
   port: 587,
@@ -26,7 +26,7 @@ const transporter = nodemailer.createTransport({
   }
 });
 
-// Ruta de envío de formulario
+// Ruta del formulario de contacto
 app.post('/api/contacto', async (req, res) => {
   const { nombre, empresa, servicio, whatsapp, detalles } = req.body || {};
 
@@ -54,8 +54,8 @@ app.post('/api/contacto', async (req, res) => {
   }
 });
 
-// Ruta por defecto compatible con Express v5 (catch-all)
-app.get('/(.*)', (req, res) => {
+// Manejo genérico para servir index.html en cualquier otra ruta
+app.use((req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'), (err) => {
     if (err) {
       res.sendFile(path.join(__dirname, 'public', 'index.html'));
@@ -65,5 +65,5 @@ app.get('/(.*)', (req, res) => {
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`Servidor escuchando en el puerto ${PORT}`);
+  console.log(`Servidor iniciado en puerto ${PORT}`);
 });
