@@ -1,10 +1,14 @@
 const express = require('express');
 const nodemailer = require('nodemailer');
 const path = require('path');
+const dns = require('dns');
+
+// Forzar a Node.js a priorizar las direcciones IPv4 sobre IPv6
+dns.setDefaultResultOrder('ipv4first');
 
 const app = express();
 
-// Middlewares para procesar datos
+// Middlewares
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -12,11 +16,11 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname)));
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Configuración del transporte Nodemailer
+// Configuración del transporte Nodemailer usando IPv4 explícito
 const transporter = nodemailer.createTransport({
   host: 'smtp.gmail.com',
   port: 587,
-  secure: false,
+  secure: false, // TLS
   auth: {
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASS
@@ -54,7 +58,7 @@ app.post('/api/contacto', async (req, res) => {
   }
 });
 
-// Manejo genérico para servir index.html en cualquier otra ruta
+// Manejo genérico para servir index.html
 app.use((req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'), (err) => {
     if (err) {
