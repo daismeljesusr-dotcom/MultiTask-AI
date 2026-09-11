@@ -12,41 +12,40 @@ app.use(express.static('.'));
 
 // Configuración para el envío de correos por Gmail
 const transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS
-    }
+  host: 'smtp.gmail.com',
+  port: 587,
+  secure: false, // TLS
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS
+  },
+  tls: {
+    rejectUnauthorized: false
+  }
 });
-
 // Ruta que procesa el formulario de contacto
 app.post('/api/contacto', async (req, res) => {
-    const { nombre, empresa, servicio, whatsapp, detalles } = req.body;
+  const { nombre, empresa, servicio, whatsapp, detalles } = req.body;
 
-    const mailOptions = {
-        from: process.env.EMAIL_USER,
-        to: 'daismeljesusr@gmail.com', // Aquí recibirás los leads
-        subject: `Nuevo Cliente: ${nombre} - ${servicio}`,
-        html: `
-            <h2>Nuevo Mensaje desde la Web</h2>
-            <p><strong>Nombre:</strong> ${nombre}</p>
-            <p><strong>Empresa:</strong> ${empresa}</p>
-            <p><strong>Servicio:</strong> ${servicio}</p>
-            <p><strong>WhatsApp:</strong> ${whatsapp}</p>
-            <p><strong>Detalles:</strong> ${detalles || 'Sin detalles'}</p>
-        `
-    };
+  const mailOptions = {
+    from: process.env.EMAIL_USER,
+    to: 'daismeljesusr@gmail.com',
+    subject: `Nuevo Cliente: ${nombre} - ${servicio}`,
+    html: `
+      <h3>Nuevo mensaje desde el formulario de contacto</h3>
+      <p><strong>Nombre:</strong> ${nombre}</p>
+      <p><strong>Empresa:</strong> ${empresa}</p>
+      <p><strong>Servicio:</strong> ${servicio}</p>
+      <p><strong>WhatsApp:</strong> ${whatsapp}</p>
+      <p><strong>Detalles:</strong> ${detalles}</p>
+    `
+  };
 
-    try {
-        await transporter.sendMail(mailOptions);
-        res.status(200).json({ success: true, message: 'Enviado con éxito' });
-    } catch (error) {
-        console.error('Error al enviar correo:', error);
-        res.status(500).json({ success: false, message: 'Error en el servidor' });
-    }
-});
-
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    console.log(`Servidor activo en el puerto ${PORT}`);
+  try {
+    await transporter.sendMail(mailOptions);
+    return res.status(200).json({ success: true, mensaje: 'Correo enviado con éxito' });
+  } catch (error) {
+    console.error('Error detallado de Nodemailer:', error);
+    return res.status(500).json({ success: false, error: error.message });
+  }
 });
