@@ -4,15 +4,15 @@ const path = require('path');
 
 const app = express();
 
-// Middlewares para procesar JSON y datos de formularios
+// Middlewares
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Servir archivos estáticos desde la raíz del proyecto y desde /public si existe
+// Archivos estáticos
 app.use(express.static(path.join(__dirname)));
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Configuración del transporte Nodemailer
+// Transporte Nodemailer (Puerto 587 TLS)
 const transporter = nodemailer.createTransport({
   host: 'smtp.gmail.com',
   port: 587,
@@ -26,12 +26,7 @@ const transporter = nodemailer.createTransport({
   }
 });
 
-// Ruta de prueba para verificar que el backend responda
-app.get('/api/health', (req, res) => {
-  res.json({ status: 'ok', message: 'Servidor funcionando correctamente' });
-});
-
-// Ruta que procesa el formulario de contacto
+// Ruta de envío de formulario
 app.post('/api/contacto', async (req, res) => {
   const { nombre, empresa, servicio, whatsapp, detalles } = req.body || {};
 
@@ -51,16 +46,16 @@ app.post('/api/contacto', async (req, res) => {
 
   try {
     await transporter.sendMail(mailOptions);
-    console.log('Correo enviado exitosamente');
+    console.log('Correo enviado con éxito');
     return res.status(200).json({ success: true, mensaje: 'Correo enviado con éxito' });
   } catch (error) {
-    console.error('Error detallado de envío:', error);
+    console.error('Error enviando correo:', error);
     return res.status(500).json({ success: false, error: error.message });
   }
 });
 
-// Ruta genérica para servir el index.html principal
-app.get('*', (req, res) => {
+// Ruta por defecto compatible con Express v5 (catch-all)
+app.get('/(.*)', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'), (err) => {
     if (err) {
       res.sendFile(path.join(__dirname, 'public', 'index.html'));
@@ -70,5 +65,5 @@ app.get('*', (req, res) => {
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`Servidor iniciado correctamente en el puerto ${PORT}`);
+  console.log(`Servidor escuchando en el puerto ${PORT}`);
 });
